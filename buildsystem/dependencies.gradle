@@ -44,5 +44,5 @@ ext.libraries = [
 		eventbus     	   : "org.greenrobot:eventbus:$versions.eventbus",
 		picasso			   : "com.squareup.picasso:picasso:$versions.picasso",
 		vegarequest		   : "com.github.binhbt:Vegarequest:1.0.1",
-		vegarecyclerview   : "com.github.binhbt:VegaRecyclerView:1.0"
+		vegarecyclerview   : "com.github.binhbt:VegaRecyclerView:1.0.1"
 ]
