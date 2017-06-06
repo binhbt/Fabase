@@ -14,3 +14,5 @@ dependencies {
     compile 'com.github.binhbt:Vegarequest:1.0.1'
 }
 ```
+Demo at:
+https://github.com/binhbt/VegaBaseDemo
