@@ -11,7 +11,7 @@ build.gradle for allprojects
 add to app build.gradle
 ```gradle
 dependencies {
-    compile 'com.github.binhbt:Vegabase:1.0.1'
+    compile 'com.github.binhbt:Vegabase:1.0.2'
 }
 ```
 Demo at:
