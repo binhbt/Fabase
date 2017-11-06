@@ -78,8 +78,9 @@ dependencies {
     compile libraries.eventbus
     //compile libraries.picasso
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+    compile 'com.github.binhbt:Vegarequest:1.1'
     //compile libraries.vegarequest
     //compile libraries.vegarecyclerview
-    compile project(':Vegarequest')
+    //compile project(':Vegarequest')
     compile project(':VegaRecyclerView')
 }
