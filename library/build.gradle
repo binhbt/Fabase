@@ -83,5 +83,5 @@ dependencies {
     //compile libraries.vegarequest
     //compile libraries.vegarecyclerview
     //compile project(':Vegarequest')
-    compile project(':VegaRecyclerView')
+    //compile project(':VegaRecyclerView')
 }
