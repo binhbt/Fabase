@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven' // ADD THIS
+//apply plugin: 'com.github.dcendents.android-maven' // ADD THIS
 
 group='com.github.jitpack'
 
@@ -84,4 +84,5 @@ dependencies {
     //compile libraries.vegarecyclerview
     //compile project(':Vegarequest')
     //compile project(':VegaRecyclerView')
+    compile project(':vegaimageloader')
 }
