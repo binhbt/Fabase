@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.vn.fa.base.net.request.RequestType;
 import com.vn.fa.base.net.request.RestEndPoints;
-import com.vn.vega.net.adapter.Request;
+import com.vn.fa.net.adapter.Request;
 
 import java.lang.reflect.Type;
 import java.util.Map;

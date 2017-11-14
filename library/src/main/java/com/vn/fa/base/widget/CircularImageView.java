@@ -14,7 +14,7 @@ import android.os.Build.VERSION;
 import android.util.AttributeSet;
 
 import com.fa.loader.widget.FAImageView;
-import com.vn.vega.base.R;
+import com.vn.fa.base.R;
 
 
 public class CircularImageView extends FAImageView {

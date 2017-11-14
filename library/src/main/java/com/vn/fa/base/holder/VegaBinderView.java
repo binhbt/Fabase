@@ -1,6 +1,6 @@
 package com.vn.fa.base.holder;
 
-import com.vn.vega.adapter.multipleviewtype.VegaDataBinder;
+import com.vn.fa.adapter.multipleviewtype.VegaDataBinder;
 
 import org.greenrobot.eventbus.EventBus;
 

@@ -23,24 +23,24 @@ public class LogUtil {
         // return 2.0 if it's XHDPI
         // return 3.0 if it's XXHDPI
         // return 4.0 if it's XXXHDPI
-        VLog.e("density", density+"");
+        FaLog.e("density", density+"");
         if (density == 0.75f){
-            VLog.e("Screen type", "LDPI");
+            FaLog.e("Screen type", "LDPI");
         }
         if (density == 1.0f){
-            VLog.e("Screen type", "HDPI");
+            FaLog.e("Screen type", "HDPI");
         }
         if (density == 1.5f){
-            VLog.e("Screen type", "LDPI");
+            FaLog.e("Screen type", "LDPI");
         }
         if (density == 2.0f){
-            VLog.e("Screen type", "XHDPI");
+            FaLog.e("Screen type", "XHDPI");
         }
         if (density == 3.0f){
-            VLog.e("Screen type", "XXHDPI");
+            FaLog.e("Screen type", "XXHDPI");
         }
         if (density == 4.0f){
-            VLog.e("Screen type", "XXXHDPI");
+            FaLog.e("Screen type", "XXXHDPI");
         }
     }
 }

@@ -8,8 +8,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.vn.vega.base.R;
-import com.vn.vega.ui.RxDialogFragment;
+import com.vn.fa.base.R;
+import com.vn.fa.ui.RxDialogFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

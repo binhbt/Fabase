@@ -3,8 +3,8 @@ package com.vn.fa.base.net.request.retrofit;
 import com.vn.fa.base.net.request.JsonToModelMapper;
 import com.vn.fa.base.net.request.RequestType;
 import com.vn.fa.base.net.request.RestEndPoints;
-import com.vn.vega.net.ApiService;
-import com.vn.vega.net.adapter.Request;
+import com.vn.fa.net.ApiService;
+import com.vn.fa.net.adapter.Request;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;

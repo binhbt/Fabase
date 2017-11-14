@@ -1,4 +1,4 @@
-package com.vn.vega.base;
+package com.vn.fa.base;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

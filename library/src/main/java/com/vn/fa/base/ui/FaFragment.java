@@ -9,9 +9,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.vn.fa.base.R;
+import com.vn.fa.base.callback.OnNetWorkStatusChanged;
+import com.vn.fa.base.event.NetWorkEvent;
 import com.vn.fa.base.util.FontHelper;
-import com.vn.vega.base.R;
-import com.vn.vega.ui.RxFragment;
+import com.vn.fa.base.util.NetworkUtil;
+import com.vn.fa.ui.RxFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -23,6 +26,7 @@ import butterknife.ButterKnife;
  * Created by binhbt on 6/22/2016.
  */
 public abstract class FaFragment extends RxFragment{
+    protected OnNetWorkStatusChanged onNetWorkStatusChanged;
     protected View root;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +40,11 @@ public abstract class FaFragment extends RxFragment{
                 ((ViewGroup) root.findViewById(R.id.fragment_vega_content))
                         .addView(contentFragment);
             }
+            if (isShowNoNetWork()) {
+                addNoNetWork();
+            }
             ButterKnife.bind(this, root);
+
             initView(savedInstanceState);
         } else {
             if (root.getParent() != null) {
@@ -45,8 +53,20 @@ public abstract class FaFragment extends RxFragment{
         }
         if (isListenOnSleep())
             EventBus.getDefault().register(this);
+
+
+
         return root;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isShowNoNetWork() && !NetworkUtil.isConnected(getActivity())) {
+            showNoNetWork(true);
+        }
+    }
+
     protected abstract int getLayoutId();
     protected abstract void initView(Bundle savedInstanceState);
     protected void showLoading(){
@@ -111,7 +131,24 @@ public abstract class FaFragment extends RxFragment{
     }
     public void handleEvent(Object event){
         //TODO Handle message reived here. Overite it
+        if (event instanceof NetWorkEvent){
+            NetWorkEvent netWorkEvent = (NetWorkEvent)event;
+            if (netWorkEvent.getType() == NetWorkEvent.Type.NETWORK_STATUS_CHANGED){
+                if (onNetWorkStatusChanged != null){
+                    onNetWorkStatusChanged.onStatusChanged(netWorkEvent.getStatus());
+                }
+            }
+        }
     }
+
+    public OnNetWorkStatusChanged getOnNetWorkStatusChanged() {
+        return onNetWorkStatusChanged;
+    }
+
+    public void setOnNetWorkStatusChanged(OnNetWorkStatusChanged onNetWorkStatusChanged) {
+        this.onNetWorkStatusChanged = onNetWorkStatusChanged;
+    }
+
     protected void loadFont(String assetName) {
         FontHelper fontChanger = new FontHelper(getActivity().getAssets(), assetName);
         fontChanger.replaceFonts((ViewGroup) (ViewGroup) this.getView());
@@ -143,5 +180,27 @@ public abstract class FaFragment extends RxFragment{
         if (child != null)
             getChildFragmentManager().beginTransaction().
                     remove(child).commit();
+    }
+    protected boolean isShowNoNetWork(){
+        return true;
+    }
+    protected int getNoNetWorkLayout(){
+        return R.layout.view_no_network;
+    }
+    protected void showNoNetWork(boolean isShow){
+        if (isShow){
+            root.findViewById(R.id.no_network_content).setVisibility(View.VISIBLE);
+        }else{
+            root.findViewById(R.id.no_network_content).setVisibility(View.INVISIBLE);
+        }
+    }
+    protected void addNoNetWork(){
+        if (getNoNetWorkLayout() >0) {
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View contentFragment = inflater.inflate(getNoNetWorkLayout(), (ViewGroup) root.findViewById(R.id.no_network_content),
+                    false);
+            ((ViewGroup) root.findViewById(R.id.no_network_content))
+                    .addView(contentFragment);
+        }
     }
 }

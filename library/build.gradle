@@ -4,12 +4,12 @@ apply plugin: 'com.android.library'
 group='com.github.jitpack'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "25.0.0"
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
         versionCode 1
         versionName "1.0"
         consumerProguardFiles 'proguard-rules.pro'
@@ -78,11 +78,11 @@ dependencies {
     compile libraries.eventbus
     //compile libraries.picasso
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
-    compile 'com.github.binhbt:Vegarequest:1.1'
-    compile 'com.github.binhbt:VegaRecyclerView:1.0.1'
+    compile 'com.github.binhbt:Vegarequest:1.2.0'
+    compile 'com.github.binhbt:VegaRecyclerView:1.2.0'
     //compile libraries.vegarequest
     //compile libraries.vegarecyclerview
     //compile project(':Vegarequest')
     //compile project(':VegaRecyclerView')
-    compile project(':vegaimageloader')
+    compile 'com.github.binhbt:vegaimageloader:1.0.5'
 }

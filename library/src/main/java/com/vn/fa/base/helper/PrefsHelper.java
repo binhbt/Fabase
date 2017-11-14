@@ -3,8 +3,8 @@ package com.vn.fa.base.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.vn.vega.base.R;
-import com.vn.fa.base.util.VLog;
+import com.vn.fa.base.R;
+import com.vn.fa.base.util.FaLog;
 
 /**
  * Created by binhbt on 8/1/2016.
@@ -41,7 +41,7 @@ public class PrefsHelper {
      */
     public void saveString(String key, String value) {
         if (value == null) {
-            VLog.e("PreferenceHandler", key + ", value is null");
+            FaLog.e("PreferenceHandler", key + ", value is null");
             return;
         }
         prefs.edit().putString(key, value).apply();

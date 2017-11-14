@@ -5,11 +5,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 
 import com.malinskiy.superrecyclerview.OnMoreListener;
-import com.vn.fa.base.net.FARequest;
+import com.vn.fa.adapter.multipleviewtype.IViewBinder;
+import com.vn.fa.adapter.multipleviewtype.VegaBindAdapter;
+import com.vn.fa.base.adapter.FaAdapter;
+import com.vn.fa.base.holder.OnItemClickListener;
+import com.vn.fa.base.net.FaRequest;
 import com.vn.fa.base.net.request.RequestType;
-import com.vn.vega.adapter.multipleviewtype.IViewBinder;
-import com.vn.vega.adapter.multipleviewtype.VegaBindAdapter;
-import com.vn.vega.widget.RecyclerViewWrapper;
+import com.vn.fa.widget.RecyclerViewWrapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,16 @@ import java.util.Map;
  */
 
 public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshLayout.OnRefreshListener, OnMoreListener {
+    public OnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    private OnItemClickListener onItemClickListener;
+
     public interface OnRequestExcute{
         public void onStart();
         public void onError(Throwable t);
@@ -59,12 +71,12 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
     private RequestType type;
     private String path;
     private Map<String, String> params = new HashMap<>();
-    private VegaBindAdapter adapter;
-    private FARequest request;
+    private FaAdapter adapter;
+    private FaRequest request;
     private OnRequestExcute requestCallback;
     private String limitName = "limit";
     private String offsetName ="offset";
-    public FARecyclerview api(FARequest request) {
+    public FARecyclerview api(FaRequest request) {
         this.request = request;
         return this;
     }
@@ -154,14 +166,16 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
     }
     public void addAllData(List<IViewBinder> result){
         if (adapter == null){
-            adapter = new VegaBindAdapter();
+            adapter = new FaAdapter();
+            adapter.setOnItemClickListener(onItemClickListener);
             setAdapter(adapter);
         }
         adapter.addAllDataObject(result);
     }
     public void addData(IViewBinder result){
         if (adapter == null){
-            adapter = new VegaBindAdapter();
+            adapter = new FaAdapter();
+            adapter.setOnItemClickListener(onItemClickListener);
             setAdapter(adapter);
         }
         adapter.addDataObject(result);
@@ -171,7 +185,7 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
         params.put(offsetName, offset +"");
         type = type == null?this.request.getType():type;
         if (this.request != null) {
-            this.request.addCallBack(new FARequest.RequestCallBack<List<IViewBinder>>() {
+            this.request.addCallBack(new FaRequest.RequestCallBack<List<IViewBinder>>() {
                 @Override
                 public void onStart() {
                     if (requestCallback != null){
@@ -186,7 +200,8 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
                     }
                     //Log.e("err", "err");
                     if (adapter == null){
-                        adapter = new VegaBindAdapter();
+                        adapter = new FaAdapter();
+                        adapter.setOnItemClickListener(onItemClickListener);
                         setAdapter(adapter);
                     }
                     endData();
@@ -198,7 +213,8 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
                         requestCallback.onFinish(result);
                     }
                     if (adapter == null){
-                        adapter = new VegaBindAdapter();
+                        adapter = new FaAdapter();
+                        adapter.setOnItemClickListener(onItemClickListener);
                         setAdapter(adapter);
                     }
                     if (!isLoadMore){

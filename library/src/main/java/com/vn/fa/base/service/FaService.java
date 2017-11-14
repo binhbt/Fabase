@@ -9,9 +9,9 @@ import org.greenrobot.eventbus.Subscribe;
  * Created by leobui on 10/25/2017.
  */
 
-public abstract class VegaService extends Service {
+public abstract class FaService extends Service {
 
-    public void sendEvent(Object message){
+    protected void sendEvent(Object message){
         if (message == null) throw new IllegalArgumentException("Object message can not be null");
         EventBus.getDefault().post(message);
     }

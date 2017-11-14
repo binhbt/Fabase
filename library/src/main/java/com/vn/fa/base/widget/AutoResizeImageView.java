@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
 import com.fa.loader.widget.FAImageView;
-import com.vn.vega.base.R;
+import com.vn.fa.base.R;
 
 
 public class AutoResizeImageView extends FAImageView {

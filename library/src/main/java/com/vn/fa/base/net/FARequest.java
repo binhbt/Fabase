@@ -1,12 +1,14 @@
 package com.vn.fa.base.net;
 
+import android.util.Log;
+
 import com.google.gson.internal.$Gson$Types;
 import com.google.gson.reflect.TypeToken;
-import com.vn.fa.base.net.request.retrofit.RetrofitAdapterFactory;
 import com.vn.fa.base.net.request.RequestType;
 import com.vn.fa.base.net.request.RestEndPoints;
-import com.vn.vega.net.RequestLoader;
-import com.vn.vega.net.adapter.Request;
+import com.vn.fa.base.net.request.retrofit.RetrofitAdapterFactory;
+import com.vn.fa.net.RequestLoader;
+import com.vn.fa.net.adapter.Request;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -22,7 +24,7 @@ import rx.functions.Func1;
  * Created by leobui on 10/27/2017.
  */
 
-public abstract class FARequest<T> {
+public abstract class FaRequest<T> {
     public interface Convert<T, R> extends Func1<T, R> {
     }
     private static volatile RestEndPoints apix;
@@ -54,6 +56,7 @@ public abstract class FARequest<T> {
 
     protected RequestType type;
     protected Object container;
+    protected String tag;
     protected List<RequestCallBack> callBacks = new ArrayList<>();
     protected Observable<T> api;
     protected Type dataType;
@@ -62,8 +65,11 @@ public abstract class FARequest<T> {
     protected String baseUrl;
     protected Request.Factory resAdapter;
     protected boolean isLogging = true;
-
-    public FARequest logging(boolean isLogging) {
+    public FaRequest tag(String tag) {
+        this.tag = tag;
+        return this;
+    }
+    public FaRequest logging(boolean isLogging) {
         this.isLogging = isLogging;
         return this;
     }
@@ -112,7 +118,7 @@ public abstract class FARequest<T> {
         return true;
     }
 
-    public FARequest requesAdaptert(Request.Factory resAdapter) {
+    public FaRequest requesAdaptert(Request.Factory resAdapter) {
         this.resAdapter = resAdapter;
         return this;
     }
@@ -121,12 +127,12 @@ public abstract class FARequest<T> {
         return new RetrofitAdapterFactory();
     }
 
-    public FARequest params(Map<String, String> params) {
+    public FaRequest params(Map<String, String> params) {
         this.params = params;
         return this;
     }
 
-    public FARequest addParams(String key, String value) {
+    public FaRequest addParams(String key, String value) {
         if (this.params == null)
             this.params = new HashMap<>();
         this.params.put(key, value);
@@ -135,7 +141,7 @@ public abstract class FARequest<T> {
 
     protected Map<String, String> headers;
 
-    public FARequest headers(Map<String, String> headers) {
+    public FaRequest headers(Map<String, String> headers) {
         this.headers = headers;
         return this;
     }
@@ -178,12 +184,12 @@ public abstract class FARequest<T> {
         }
     }
 
-    public FARequest path(String path) {
+    public FaRequest path(String path) {
         this.path = path;
         return this;
     }
 
-    public FARequest baseUrl(String baseUrl) {
+    public FaRequest baseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
         return this;
     }
@@ -192,12 +198,12 @@ public abstract class FARequest<T> {
         return RequestType.GET;
     }
 
-    public FARequest dataType(Type type) {
+    public FaRequest dataType(Type type) {
         this.dataType = type;
         return this;
     }
 
-    public FARequest dataType(Class type) {
+    public FaRequest dataType(Class type) {
         this.dataType = type;
         return this;
     }
@@ -216,27 +222,27 @@ public abstract class FARequest<T> {
         return null;
     }
 
-    public FARequest api(Observable<T> api) {
+    public FaRequest api(Observable<T> api) {
         this.api = api;
         return this;
     }
 
-    public FARequest type(RequestType type) {
+    public FaRequest type(RequestType type) {
         this.type = type;
         return this;
     }
 
-    public FARequest container(Object container) {
+    public FaRequest container(Object container) {
         this.container = container;
         return this;
     }
 
-    public FARequest callBack(RequestCallBack callBack) {
+    public FaRequest callBack(RequestCallBack callBack) {
         callBacks.add(callBack);
         return this;
     }
 
-    public FARequest addCallBack(RequestCallBack callBack) {
+    public FaRequest addCallBack(RequestCallBack callBack) {
         callBacks.add(callBack);
         return this;
     }
@@ -294,9 +300,16 @@ public abstract class FARequest<T> {
                     }
                 })
                 .container(container == null ? "default_container" : container)
+                .tag(tag)
                 .build();
     }
-
+    public void cancel(){
+        if (tag != null) {
+            RequestLoader.getDefault().cancelByTag(tag);
+        }else{
+            Log.e("Cancel Request", "You have to add tag for this request for cancel");
+        }
+    }
     static protected Type getSuperclassTypeParameter(Class<?> subclass) {
         Type superclass = subclass.getGenericSuperclass();
         if (superclass instanceof Class) {

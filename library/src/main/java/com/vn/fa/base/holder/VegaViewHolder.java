@@ -1,8 +1,9 @@
 package com.vn.fa.base.holder;
 
+import android.content.Context;
 import android.view.View;
 
-import com.vn.vega.adapter.multipleviewtype.BinderViewHolder;
+import com.vn.fa.adapter.multipleviewtype.BinderViewHolder;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -19,5 +20,8 @@ public class VegaViewHolder extends BinderViewHolder {
 
     public void sendEvent(Object event){
         EventBus.getDefault().post(event);
+    }
+    public Context getContext(){
+        return itemView.getContext();
     }
 }
