@@ -27,7 +27,7 @@ import rx.functions.Func1;
 public abstract class FaRequest<T> {
     public interface Convert<T, R> extends Func1<T, R> {
     }
-    private static volatile RestEndPoints apix;
+    protected static volatile RestEndPoints apix;
 
     private RestEndPoints getApiSingleton() {
         if (apix == null) {
