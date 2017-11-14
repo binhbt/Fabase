@@ -65,6 +65,7 @@ public abstract class FaRequest<T> {
     protected String baseUrl;
     protected Request.Factory resAdapter;
     protected boolean isLogging = true;
+    protected boolean isNewInstance = false;
     public FaRequest tag(String tag) {
         this.tag = tag;
         return this;
@@ -73,7 +74,13 @@ public abstract class FaRequest<T> {
         this.isLogging = isLogging;
         return this;
     }
-
+    public FaRequest newInstance(boolean isNewInstance) {
+        this.isNewInstance = isNewInstance;
+        return this;
+    }
+    public boolean isNewInstance() {
+        return false;
+    }
     public void setPath(String path) {
         this.path = path;
     }
@@ -157,6 +164,15 @@ public abstract class FaRequest<T> {
     }
 
     protected RestEndPoints getEndPoints() {
+        if (isNewInstance || isNewInstance()){
+            return new Request.Builder()
+                    .baseUrl(baseUrl == null ? getBaseUrl() : baseUrl)
+                    .addRequestAdapterFactory(resAdapter == null ? getRequestAdapter() : resAdapter)
+                    //.addRequestAdapterFactory(new OkHttpAdapterFactory())
+                    .logging(isLogging ? isLogging() : isLogging)
+                    .build()
+                    .create(RestEndPoints.class);
+        }
         return getApiSingleton();
     }
 
