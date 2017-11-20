@@ -9,12 +9,14 @@ import com.vn.fa.net.adapter.Request;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.annotations.NonNull;
 import retrofit2.http.FieldMap;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
-import rx.Observable;
-import rx.Subscriber;
 
 /**
  * Created by leobui on 10/25/2017.
@@ -32,7 +34,7 @@ public class OkHttpAdapterFactory extends Request.Factory implements RestEndPoin
     }
 
     @Override
-    public  Observable<Object> callPostApiWithFormUrlEncoded(@Path("path") String path, @FieldMap Map<String, String> params, @HeaderMap Map<String, String> headers, Type objType) {
+    public Observable<Object> callPostApiWithFormUrlEncoded(@Path("path") String path, @FieldMap Map<String, String> params, @HeaderMap Map<String, String> headers, Type objType) {
         return null;
     }
 
@@ -57,15 +59,15 @@ public class OkHttpAdapterFactory extends Request.Factory implements RestEndPoin
     }
     public <T> Observable<T> createGetObservable(String path, final Map<String, String> params, @HeaderMap Map<String, String> headers, final Type objType) {
         final String url = baseUrl+path;
-        return Observable.create(new Observable.OnSubscribe<T>() {
+        return Observable.create(new ObservableOnSubscribe<T>() {
             @Override
-            public void call(Subscriber<? super T> subscriber) {
+            public void subscribe(@NonNull ObservableEmitter<T> subscriber) {
                 try {
                     String responseUserEntities = ApiConnection.create(url).requestSyncCall(params);
                     if (responseUserEntities != null) {
                         //Type type = new TypeToken<List<VersionApp>>() {}.getType();
                         subscriber.onNext((T)convertToObject(responseUserEntities, objType));
-                        subscriber.onCompleted();
+                        subscriber.onComplete();
                     } else {
                         subscriber.onError(new OkHttpException());
                     }
@@ -93,15 +95,15 @@ public class OkHttpAdapterFactory extends Request.Factory implements RestEndPoin
     }
     public <T> Observable<T> createPostObservable(String path, final Map<String, String> params, final Type objType) {
         final String url = baseUrl+path;
-        return Observable.create(new Observable.OnSubscribe<T>() {
+        return Observable.create(new ObservableOnSubscribe<T>() {
             @Override
-            public void call(Subscriber<? super T> subscriber) {
+            public void subscribe(@NonNull ObservableEmitter<T> subscriber) {
                 try {
                     String responseUserEntities = ApiConnection.create(url).postSync(params);
                     if (responseUserEntities != null) {
                         //Type type = new TypeToken<List<VersionApp>>() {}.getType();
                         subscriber.onNext((T)convertToObject(responseUserEntities, objType));
-                        subscriber.onCompleted();
+                        subscriber.onComplete();
                     } else {
                         subscriber.onError(new OkHttpException());
                     }
@@ -110,6 +112,7 @@ public class OkHttpAdapterFactory extends Request.Factory implements RestEndPoin
                     subscriber.onError(new OkHttpException(e.getCause()));
                 }
             }
+
         });
 /*        return Observable.create(subscriber -> {
             try {

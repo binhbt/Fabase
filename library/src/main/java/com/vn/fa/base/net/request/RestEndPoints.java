@@ -3,6 +3,7 @@ package com.vn.fa.base.net.request;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import io.reactivex.Observable;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -11,7 +12,6 @@ import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
-import rx.Observable;
 
 /**
  * Created by leobui on 10/27/2017.

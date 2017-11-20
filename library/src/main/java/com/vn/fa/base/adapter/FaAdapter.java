@@ -1,7 +1,6 @@
 package com.vn.fa.base.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.vn.fa.adapter.multipleviewtype.VegaBindAdapter;

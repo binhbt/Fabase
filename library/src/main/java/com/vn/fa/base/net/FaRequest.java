@@ -4,9 +4,14 @@ import android.util.Log;
 
 import com.google.gson.internal.$Gson$Types;
 import com.google.gson.reflect.TypeToken;
+import com.vn.fa.base.data.DataRepository;
+import com.vn.fa.base.data.cache.CacheFactory;
+import com.vn.fa.base.domain.Repository;
 import com.vn.fa.base.net.request.RequestType;
 import com.vn.fa.base.net.request.RestEndPoints;
 import com.vn.fa.base.net.request.retrofit.RetrofitAdapterFactory;
+import com.vn.fa.base.util.HttpUtil;
+import com.vn.fa.base.util.StringUtil;
 import com.vn.fa.net.RequestLoader;
 import com.vn.fa.net.adapter.Request;
 
@@ -17,15 +22,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import rx.Observable;
-import rx.functions.Func1;
+import io.reactivex.Observable;
+import io.reactivex.functions.Function;
 
 /**
  * Created by leobui on 10/27/2017.
  */
 
 public abstract class FaRequest<T> {
-    public interface Convert<T, R> extends Func1<T, R> {
+    public interface Convert<T, R> extends Function<T, R> {
     }
     protected static volatile RestEndPoints apix;
 
@@ -66,6 +71,16 @@ public abstract class FaRequest<T> {
     protected Request.Factory resAdapter;
     protected boolean isLogging = true;
     protected boolean isNewInstance = false;
+    protected Repository dataRepository;
+    protected boolean isCache = false;
+    public FaRequest cache(boolean isCache) {
+        this.isCache = isCache;
+        return this;
+    }
+    public FaRequest dataRepository(Repository dataRepository) {
+        this.dataRepository = dataRepository;
+        return this;
+    }
     public FaRequest tag(String tag) {
         this.tag = tag;
         return this;
@@ -77,6 +92,12 @@ public abstract class FaRequest<T> {
     public FaRequest newInstance(boolean isNewInstance) {
         this.isNewInstance = isNewInstance;
         return this;
+    }
+    public Repository getDataRepository(){
+        return null;
+    }
+    public boolean isCache() {
+        return false;
     }
     public boolean isNewInstance() {
         return false;
@@ -177,26 +198,37 @@ public abstract class FaRequest<T> {
     }
 
     protected Observable getApi() {
-/*        RestEndPoints apix = new Request.Builder()
-                .baseUrl(EndPoints.API_ENDPOINT)
-                //.addRequestAdapterFactory(new RetrofitAdapterFactory())
-                .addRequestAdapterFactory(new OkHttpAdapterFactory())
-                .logging(true)
-                .build()
-                .create(RestEndPoints.class);*/
-        if(getConvert() == null) {
-            return getEndPoints().callApi(type == null ? getType() : type,
-                    path == null ? getPath() : path,
-                    params == null ? getParams() : params,
-                    headers == null ? getHeaders() : headers,
-                    dataType == null ? getDataType() : dataType);
+        if ((getDataRepository() == null && dataRepository == null)) {
+            if (getConvert() == null) {
+                return getEndPoints().callApi(type == null ? getType() : type,
+                        path == null ? getPath() : path,
+                        params == null ? getParams() : params,
+                        headers == null ? getHeaders() : headers,
+                        dataType == null ? getDataType() : dataType);
+            } else {
+                return getEndPoints().callApi(type == null ? getType() : type,
+                        path == null ? getPath() : path,
+                        params == null ? getParams() : params,
+                        headers == null ? getHeaders() : headers,
+                        dataType == null ? getDataType() : dataType)
+                        .map(getConvert());
+            }
         }else{
-            return getEndPoints().callApi(type == null ? getType() : type,
-                    path == null ? getPath() : path,
-                    params == null ? getParams() : params,
-                    headers == null ? getHeaders() : headers,
-                    dataType == null ? getDataType() : dataType)
-                    .map(getConvert());
+            Repository repository = getDataRepository() == null?dataRepository:getDataRepository();
+            if (getConvert() == null) {
+                return repository.callApi(type == null ? getType() : type,
+                        path == null ? getPath() : path,
+                        params == null ? getParams() : params,
+                        headers == null ? getHeaders() : headers,
+                        dataType == null ? getDataType() : dataType, StringUtil.getBase64(path+ HttpUtil.convertMapToQueryString(params)), !(isCache||isCache()));
+            } else {
+                return repository.callApi(type == null ? getType() : type,
+                        path == null ? getPath() : path,
+                        params == null ? getParams() : params,
+                        headers == null ? getHeaders() : headers,
+                        dataType == null ? getDataType() : dataType, StringUtil.getBase64(path+ HttpUtil.convertMapToQueryString(params)), !(isCache||isCache()))
+                        .map(getConvert());
+            }
         }
     }
 
