@@ -2,8 +2,10 @@ package com.vn.fa.base.data.cache.rxcache;
 
 import com.vn.fa.base.data.cache.CacheFactory;
 import com.vn.fa.base.data.cache.CacheProviders;
+import com.vn.fa.base.net.request.JsonToModelMapper;
 
 import java.io.File;
+import java.lang.reflect.Type;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
@@ -21,11 +23,11 @@ import io.victoralbertos.jolyglot.GsonSpeaker;
 public class RxCacheAdapterFactory extends CacheFactory implements CacheProviders{
     private RxCacheProviders cacheProviders;
     @Override
-    public Observable<Object> getData(Observable<Object> observable, String dynamicKey, boolean update) {
+    public Observable<Object> getData(Observable<Object> observable, final Type objType, String dynamicKey, boolean update) {
         return cacheProviders.getData(observable, new DynamicKey(dynamicKey), new EvictDynamicKey(update)).map(new Function<Reply<Object>, Object>() {
             @Override
             public Object apply(@NonNull Reply<Object> objectReply) throws Exception {
-                return objectReply.getData();
+                return JsonToModelMapper.transform(objectReply.getData(), objType);
             }
         });
     }

@@ -1,6 +1,8 @@
 package com.vn.fa.base.data.cache;
 
 
+import java.lang.reflect.Type;
+
 import io.reactivex.Observable;
 
 /**
@@ -8,7 +10,7 @@ import io.reactivex.Observable;
  */
 
 public interface CacheProviders {
-    Observable<Object> getData(Observable<Object> observable, String dynamicKey, boolean update);
+    Observable<Object> getData(Observable<Object> observable, Type objType, String dynamicKey, boolean update);
 }
 
 

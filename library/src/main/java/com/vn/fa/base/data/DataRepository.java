@@ -31,7 +31,7 @@ public class DataRepository implements Repository{
     @Override
     public Observable<Object> callGetApi(String path, Map<String, String> params, Map<String, String> headers, Type objType, String dynamicKey, boolean update) {
         Observable<Object> apix = api.callGetApi(path, params, headers, objType);
-        return cacheFactory.getData(apix, dynamicKey, update);
+        return cacheFactory.getData(apix, objType, dynamicKey, update);
 
     }
 
