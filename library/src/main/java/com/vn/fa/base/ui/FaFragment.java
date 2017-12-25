@@ -116,7 +116,7 @@ public abstract class FaFragment extends RxFragment{
     public void onDestroyView() {
         if (isListenOnSleep())
             EventBus.getDefault().unregister(this);
-        Picasso.with(getActivity()).cancelTag(this);
+        //Picasso.with(getActivity()).cancelTag(this);
         super.onDestroyView();
 
     }

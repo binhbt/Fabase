@@ -12,12 +12,13 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build.VERSION;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
 import com.fa.loader.widget.FAImageView;
 import com.vn.fa.base.R;
 
 
-public class CircularImageView extends FAImageView {
+public class CircularImageView extends ImageView {
 	private int borderWidth;
 	private int canvasSize;
 	private Bitmap image;

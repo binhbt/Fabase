@@ -14,4 +14,6 @@ public abstract class VegaBinderView<T> extends VegaDataBinder<T> {
     protected void sendEvent(Object event){
         EventBus.getDefault().post(event);
     }
+
+
 }

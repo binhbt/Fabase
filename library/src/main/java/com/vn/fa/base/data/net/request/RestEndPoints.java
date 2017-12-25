@@ -1,4 +1,4 @@
-package com.vn.fa.base.net.request;
+package com.vn.fa.base.data.net.request;
 
 import java.lang.reflect.Type;
 import java.util.Map;

@@ -93,7 +93,7 @@ public abstract class FaDialogFragment extends RxDialogFragment {
         if (isListenOnSleep())
             EventBus.getDefault().unregister(this);
         super.onDestroyView();
-        Picasso.with(getActivity()).cancelTag(this);
+        //Picasso.with(getActivity()).cancelTag(this);
     }
     protected boolean isListenOnSleep(){
         return false;

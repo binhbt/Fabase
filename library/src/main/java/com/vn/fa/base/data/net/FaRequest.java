@@ -1,15 +1,14 @@
-package com.vn.fa.base.net;
+package com.vn.fa.base.data.net;
 
 import android.util.Log;
 
 import com.google.gson.internal.$Gson$Types;
 import com.google.gson.reflect.TypeToken;
-import com.vn.fa.base.data.DataRepository;
-import com.vn.fa.base.data.cache.CacheFactory;
+import com.vn.fa.base.data.cache.CacheType;
 import com.vn.fa.base.domain.Repository;
-import com.vn.fa.base.net.request.RequestType;
-import com.vn.fa.base.net.request.RestEndPoints;
-import com.vn.fa.base.net.request.retrofit.RetrofitAdapterFactory;
+import com.vn.fa.base.data.net.request.RequestType;
+import com.vn.fa.base.data.net.request.RestEndPoints;
+import com.vn.fa.base.data.net.request.retrofit.RetrofitAdapterFactory;
 import com.vn.fa.base.util.HttpUtil;
 import com.vn.fa.base.util.StringUtil;
 import com.vn.fa.net.RequestLoader;
@@ -73,6 +72,12 @@ public abstract class FaRequest<T> {
     protected boolean isNewInstance = false;
     protected Repository dataRepository;
     protected boolean isCache = false;
+    protected CacheType cacheType = CacheType.NONE;
+
+    public FaRequest cacheType(CacheType cacheType) {
+        this.cacheType = cacheType;
+        return this;
+    }
     public FaRequest cache(boolean isCache) {
         this.isCache = isCache;
         return this;
@@ -97,7 +102,10 @@ public abstract class FaRequest<T> {
         return null;
     }
     public boolean isCache() {
-        return false;
+        return isCache;
+    }
+    public CacheType getCacheType(){
+        return cacheType;
     }
     public boolean isNewInstance() {
         return false;
@@ -197,7 +205,7 @@ public abstract class FaRequest<T> {
         return getApiSingleton();
     }
 
-    protected Observable getApi() {
+    public Observable getApi() {
         if ((getDataRepository() == null && dataRepository == null)) {
             if (getConvert() == null) {
                 return getEndPoints().callApi(type == null ? getType() : type,
@@ -220,13 +228,13 @@ public abstract class FaRequest<T> {
                         path == null ? getPath() : path,
                         params == null ? getParams() : params,
                         headers == null ? getHeaders() : headers,
-                        dataType == null ? getDataType() : dataType, StringUtil.getBase64(path+ HttpUtil.convertMapToQueryString(params)), !(isCache||isCache()));
+                        dataType == null ? getDataType() : dataType, StringUtil.getBase64(path+ HttpUtil.convertMapToQueryString(params)), isCache(), getCacheType());
             } else {
                 return repository.callApi(type == null ? getType() : type,
                         path == null ? getPath() : path,
                         params == null ? getParams() : params,
                         headers == null ? getHeaders() : headers,
-                        dataType == null ? getDataType() : dataType, StringUtil.getBase64(path+ HttpUtil.convertMapToQueryString(params)), !(isCache||isCache()))
+                        dataType == null ? getDataType() : dataType, StringUtil.getBase64(path+ HttpUtil.convertMapToQueryString(params)), isCache(), getCacheType())
                         .map(getConvert());
             }
         }
@@ -365,5 +373,13 @@ public abstract class FaRequest<T> {
         }
         ParameterizedType parameterized = (ParameterizedType) superclass;
         return $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
+    }
+    public FaRequest addSubPath(String subPath){
+        if (path == null){
+            path = subPath;
+        }else{
+            path+="/"+subPath;
+        }
+        return this;
     }
 }

@@ -1,9 +1,9 @@
-package com.vn.fa.base.net.request.okhttp;
+package com.vn.fa.base.data.net.request.okhttp;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.vn.fa.base.net.request.RequestType;
-import com.vn.fa.base.net.request.RestEndPoints;
+import com.vn.fa.base.data.net.request.RequestType;
+import com.vn.fa.base.data.net.request.RestEndPoints;
 import com.vn.fa.net.adapter.Request;
 
 import java.lang.reflect.Type;

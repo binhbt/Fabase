@@ -38,7 +38,7 @@ public class DeviceUtil {
 			try {
 				TelephonyManager telephonyManager = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
 				if (telephonyManager.getDeviceId() != null && telephonyManager.getDeviceId().length() > 0) {
-					FaLog.e("telephonyManager", "telephonyManager " + telephonyManager.getDeviceId());
+					FaLog.e("telephonyManager " + telephonyManager.getDeviceId());
 					return telephonyManager.getDeviceId();
 				}
 			}catch (Exception e){
@@ -46,7 +46,7 @@ public class DeviceUtil {
 			}
             String deviceId = Settings.Secure.getString(ctx.getContentResolver(),
                     Settings.Secure.ANDROID_ID);
-            FaLog.e("ANDROID_ID", "ANDROID_ID " + deviceId);
+            FaLog.e("ANDROID_ID " + deviceId);
             if (deviceId != null) {
                 return deviceId;
             }else{
@@ -58,7 +58,7 @@ public class DeviceUtil {
             WifiManager manager = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
             WifiInfo info = manager.getConnectionInfo();
             String address = info.getMacAddress();
-            FaLog.e("address", "address " + address);
+            FaLog.e("address " + address);
             return address;
         }
 

@@ -2,7 +2,7 @@ package com.vn.fa.base.data.cache.rxcache;
 
 import com.vn.fa.base.data.cache.CacheFactory;
 import com.vn.fa.base.data.cache.CacheProviders;
-import com.vn.fa.base.net.request.JsonToModelMapper;
+import com.vn.fa.base.data.net.request.JsonToModelMapper;
 
 import java.io.File;
 import java.lang.reflect.Type;

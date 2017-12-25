@@ -1,6 +1,6 @@
 package com.vn.fa.base;
 
-import com.vn.fa.base.net.FaRequest;
+import com.vn.fa.base.data.net.FaRequest;
 
 /**
  * Created by leobui on 11/10/2017.

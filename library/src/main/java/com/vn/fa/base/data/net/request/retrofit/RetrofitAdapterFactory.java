@@ -1,8 +1,9 @@
-package com.vn.fa.base.net.request.retrofit;
+package com.vn.fa.base.data.net.request.retrofit;
 
-import com.vn.fa.base.net.request.JsonToModelMapper;
-import com.vn.fa.base.net.request.RequestType;
-import com.vn.fa.base.net.request.RestEndPoints;
+import com.vn.fa.base.data.converter.FaConverterFactory;
+import com.vn.fa.base.data.net.request.JsonToModelMapper;
+import com.vn.fa.base.data.net.request.RequestType;
+import com.vn.fa.base.data.net.request.RestEndPoints;
 import com.vn.fa.net.ApiService;
 import com.vn.fa.net.adapter.Request;
 
@@ -27,6 +28,7 @@ public class RetrofitAdapterFactory extends Request.Factory implements RestEndPo
         restEndPoints = new ApiService.Builder()
                 .baseUrl(baseUrl)
                 .logging(isLogging)
+                .converterFactory(FaConverterFactory.create())
                 .build()
                 .create(RestEndPoints.class);
     }
@@ -37,10 +39,10 @@ public class RetrofitAdapterFactory extends Request.Factory implements RestEndPo
         if (type == RequestType.GET){
             return callGetApi(path, params, headers, objType);
         }
-        if (type == RequestType.POST){
+        if (type == RequestType.POST_WITHOUT_FORM_ENCODED){
             return callPostApi(path, params, headers, objType);
         }
-        if (type == RequestType.POST_WITH_FORM_ENCODED){
+        if (type == RequestType.POST || type == RequestType.POST_WITH_FORM_ENCODED){
             return callPostApiWithFormUrlEncoded(path, params, headers, objType);
         }
         return null;

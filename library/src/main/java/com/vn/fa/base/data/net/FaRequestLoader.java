@@ -1,4 +1,4 @@
-package com.vn.fa.base.net;
+package com.vn.fa.base.data.net;
 
 import com.vn.fa.net.RequestLoader;
 

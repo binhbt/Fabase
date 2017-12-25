@@ -1,4 +1,4 @@
-package com.vn.fa.base.net.request;
+package com.vn.fa.base.data.net.request;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

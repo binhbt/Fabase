@@ -41,7 +41,7 @@ public class PrefsHelper {
      */
     public void saveString(String key, String value) {
         if (value == null) {
-            FaLog.e("PreferenceHandler", key + ", value is null");
+            FaLog.e("PreferenceHandler" + key + ", value is null");
             return;
         }
         prefs.edit().putString(key, value).apply();

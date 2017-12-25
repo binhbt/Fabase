@@ -3,14 +3,15 @@ package com.vn.fa.base.widget;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.malinskiy.superrecyclerview.OnMoreListener;
 import com.vn.fa.adapter.multipleviewtype.IViewBinder;
 import com.vn.fa.adapter.multipleviewtype.VegaBindAdapter;
 import com.vn.fa.base.adapter.FaAdapter;
 import com.vn.fa.base.holder.OnItemClickListener;
-import com.vn.fa.base.net.FaRequest;
-import com.vn.fa.base.net.request.RequestType;
+import com.vn.fa.base.data.net.FaRequest;
+import com.vn.fa.base.data.net.request.RequestType;
 import com.vn.fa.widget.RecyclerViewWrapper;
 
 import java.util.HashMap;
@@ -52,7 +53,7 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
 
     @Override
     public void onRefresh() {
-
+        setCanLoadMore(true);
         offset =0;
         loadData(false);
     }
@@ -71,7 +72,7 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
     private RequestType type;
     private String path;
     private Map<String, String> params = new HashMap<>();
-    private FaAdapter adapter;
+    protected FaAdapter adapter;
     private FaRequest request;
     private OnRequestExcute requestCallback;
     private String limitName = "limit";
@@ -181,8 +182,8 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
         adapter.addDataObject(result);
     }
     private void loadData(final boolean isLoadMore) {
-        params.put(limitName, limit+"");
-        params.put(offsetName, offset +"");
+        getParams().put(limitName, getLimit()+"");
+        getParams().put(offsetName, getOffset() +"");
         type = type == null?this.request.getType():type;
         if (this.request != null) {
             this.request.addCallBack(new FaRequest.RequestCallBack<List<IViewBinder>>() {
@@ -221,6 +222,7 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
                         adapter.clear();
                     }
                     if (result != null && result.size() >0) {
+                        getRecyclerView().setVisibility(View.VISIBLE);
                         adapter.addAllDataObject(result);
                         if (result.size() <limit){
                             endData();
@@ -230,11 +232,26 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
                     }
                 }
             })
-                    .params(params)
+                    .params(getParams())
                     .path(path)
                     .type(type == null?RequestType.GET:type)
                     .container(container == null? "recycler_request":container)
                     .doRequest();
         }
+    }
+    public int getOffset(){
+        return offset;
+    }
+    public int getLimit() {
+        return limit;
+    }
+    public Map<String, String> getParams() {
+        return params;
+    }
+    public int size(){
+        if (adapter != null){
+            return  adapter.size();
+        }
+        return 0;
     }
 }

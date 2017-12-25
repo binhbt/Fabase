@@ -1,4 +1,4 @@
-package com.vn.fa.base.net.request.okhttp;
+package com.vn.fa.base.data.net.request.okhttp;
 
 /**
  * Created by leobui on 10/26/2017.
