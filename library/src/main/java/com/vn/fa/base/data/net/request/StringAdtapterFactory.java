@@ -69,10 +69,12 @@ public class StringAdtapterFactory extends Request.Factory implements RestEndPoi
                         subscriber.onNext((T)convertToObject(responseUserEntities, objType));
                         subscriber.onComplete();
                     } else {
+                        if (!subscriber.isDisposed())
                         subscriber.onError(new OkHttpException());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    if (!subscriber.isDisposed())
                     subscriber.onError(new OkHttpException(e.getCause()));
                 }
             }
@@ -91,10 +93,12 @@ public class StringAdtapterFactory extends Request.Factory implements RestEndPoi
                         subscriber.onNext((T)convertToObject(responseUserEntities, objType));
                         subscriber.onComplete();
                     } else {
+                        if (!subscriber.isDisposed())
                         subscriber.onError(new OkHttpException());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    if (!subscriber.isDisposed())
                     subscriber.onError(new OkHttpException(e.getCause()));
                 }
             }
