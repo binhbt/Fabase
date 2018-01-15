@@ -44,7 +44,7 @@ public class DataRepository implements Repository{
                 return cacheFactory.getData(apix, objType, dynamicKey, false);
             }
             if (cacheType == CacheType.NET_FIRST){
-                return apix.onExceptionResumeNext(cacheFactory.getData(apix, objType, dynamicKey, false));
+                return cacheFactory.getData(apix, objType, dynamicKey, true).onExceptionResumeNext(cacheFactory.getData(apix, objType, dynamicKey, false));
             }
 
         }
