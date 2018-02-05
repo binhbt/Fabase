@@ -73,7 +73,7 @@ public abstract class FaRequest<T> {
     protected Repository dataRepository;
     protected boolean isCache = false;
     protected CacheType cacheType = CacheType.NONE;
-
+    protected Convert convert;
     public FaRequest cacheType(CacheType cacheType) {
         this.cacheType = cacheType;
         return this;
@@ -181,8 +181,13 @@ public abstract class FaRequest<T> {
         this.headers = headers;
         return this;
     }
-    protected Convert getConvert() {
-        return null;
+    public FaRequest convert(Convert convert){
+        this.convert = convert;
+        return this;
+    }
+
+    public Convert getConvert() {
+        return convert;
     }
     public Map<String, String> getParams() {
         return null;
