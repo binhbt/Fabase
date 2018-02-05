@@ -16,3 +16,9 @@ dependencies {
 ```
 Demo at:
 https://github.com/binhbt/VegaBaseDemo
+And
+![Image of CoinMarketCap](https://lh3.googleusercontent.com/8UUcocHx_7XeIzfMDlUHbSuXOcmTqC3rmuC5_nRITCQoS2JO3olDf8f-_Pf0TuMUVmg=h900-rw)
+
+\
+https://play.google.com/store/apps/details?id=com.bip.coin.market
+
