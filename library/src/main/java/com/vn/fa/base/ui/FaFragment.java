@@ -54,17 +54,21 @@ public abstract class FaFragment extends RxFragment{
         if (isListenOnSleep())
             EventBus.getDefault().register(this);
 
-
-
+        if (getActivity() != null && getActivity() instanceof FaActivity &&
+                ((FaActivity)getActivity()).getLoadingResource() >0){
+            ProgressBar loading = (ProgressBar) root.findViewById(R.id.loading);
+            loading.setIndeterminateDrawable(getResources().getDrawable(((FaActivity)getActivity()).getLoadingResource()));
+        }
+        if (isShowNoNetWork() && !NetworkUtil.isConnected(getActivity())) {
+            showNoNetWork(true);
+        }
         return root;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (isShowNoNetWork() && !NetworkUtil.isConnected(getActivity())) {
-            showNoNetWork(true);
-        }
+
     }
 
     protected abstract int getLayoutId();

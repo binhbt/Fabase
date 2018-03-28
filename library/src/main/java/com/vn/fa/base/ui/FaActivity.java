@@ -49,6 +49,10 @@ public abstract class FaActivity extends RxActivity{
         initView(savedInstanceState);
         if (isListenOnSleep())
             EventBus.getDefault().register(this);
+        if (getLoadingResource() >0){
+            ProgressBar loading = (ProgressBar)findViewById(R.id.progressbar_loading);
+            loading.setIndeterminateDrawable(getResources().getDrawable(getLoadingResource()));
+        }
     }
     protected abstract void initView(Bundle savedInstanceState);
     protected abstract int getLayoutId();
@@ -87,7 +91,22 @@ public abstract class FaActivity extends RxActivity{
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
     }
-
+    public void showProgressDialog() {
+        if (progressDialog == null) {
+            synchronized (this.getClass()) {
+                if (progressDialog == null) {
+                    progressDialog = new ProgressDialog(this, R.style.TransparentProgressDialog);
+                    if (getProgressDialogDrawable() != null) {
+                        progressDialog.setIndeterminateDrawable(getProgressDialogDrawable());
+                    }
+                }
+            }
+        }
+        progressDialog.setMessage("");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+    }
     public OnNetWorkStatusChanged getOnNetWorkStatusChanged() {
         return onNetWorkStatusChanged;
     }
@@ -120,7 +139,7 @@ public abstract class FaActivity extends RxActivity{
     public void onStart() {
         super.onStart();
         if (!isListenOnSleep())
-        EventBus.getDefault().register(this);
+            EventBus.getDefault().register(this);
     }
 
     @Override
@@ -217,7 +236,7 @@ public abstract class FaActivity extends RxActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (getMenuLayout() >0)
-        getMenuInflater().inflate(getMenuLayout(), menu);
+            getMenuInflater().inflate(getMenuLayout(), menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override
