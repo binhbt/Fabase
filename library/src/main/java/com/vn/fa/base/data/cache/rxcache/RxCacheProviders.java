@@ -13,7 +13,7 @@ import io.rx_cache2.Reply;
  */
 
 public interface RxCacheProviders {
-    @LifeCache(duration = 30, timeUnit = TimeUnit.DAYS)
+    @LifeCache(duration = 2, timeUnit = TimeUnit.DAYS)
     Observable<Reply<Object>> getData(Observable<Object> observable, DynamicKey dynamicKey, EvictProvider evictProvider);
 
 }
