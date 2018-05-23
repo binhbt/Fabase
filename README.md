@@ -1,3 +1,4 @@
+```sh
 //All project
 allprojects {
     repositories {
@@ -7,3 +8,4 @@ allprojects {
 }
 //App project
 compile 'com.github.binhbt:Fab:$version'
+```
