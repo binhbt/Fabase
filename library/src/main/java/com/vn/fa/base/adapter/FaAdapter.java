@@ -3,6 +3,7 @@ package com.vn.fa.base.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.vn.fa.adapter.infinite.InfiniteAdapter;
 import com.vn.fa.adapter.multipleviewtype.VegaBindAdapter;
 import com.vn.fa.base.holder.OnItemClickListener;
 
@@ -10,7 +11,7 @@ import com.vn.fa.base.holder.OnItemClickListener;
  * Created by leobui on 11/9/2017.
  */
 
-public class FaAdapter extends VegaBindAdapter{
+public class FaAdapter extends InfiniteAdapter {
     private OnItemClickListener onItemClickListener;
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
