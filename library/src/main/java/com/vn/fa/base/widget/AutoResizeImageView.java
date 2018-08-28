@@ -1,3 +1,4 @@
+/*
 package com.vn.fa.base.widget;
 
 import android.content.Context;
@@ -66,3 +67,4 @@ public class AutoResizeImageView extends FAImageView {
 
 	}
 }
+*/
