@@ -6,13 +6,13 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.malinskiy.superrecyclerview.OnMoreListener;
+import com.vn.fa.adapter.multipleviewtype.FaBindAdapter;
 import com.vn.fa.adapter.multipleviewtype.IViewBinder;
-import com.vn.fa.adapter.multipleviewtype.VegaBindAdapter;
 import com.vn.fa.base.adapter.FaAdapter;
 import com.vn.fa.base.holder.OnItemClickListener;
 import com.vn.fa.base.data.net.FaRequest;
 import com.vn.fa.base.data.net.request.RequestType;
-import com.vn.fa.widget.RecyclerViewWrapper;
+import com.vn.fa.widget.FaRecyclerView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by leobui on 11/2/2017.
  */
 
-public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshLayout.OnRefreshListener, OnMoreListener {
+public class FARecyclerview extends FaRecyclerView implements SwipeRefreshLayout.OnRefreshListener, OnMoreListener {
     public OnItemClickListener getOnItemClickListener() {
         return onItemClickListener;
     }
@@ -152,7 +152,7 @@ public class FARecyclerview extends RecyclerViewWrapper implements SwipeRefreshL
     }
 
     @Override
-    public VegaBindAdapter getAdapter() {
+    public FaBindAdapter getAdapter() {
         return adapter;
     }
 
