@@ -14,7 +14,6 @@ import android.os.Build.VERSION;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.fa.loader.widget.FAImageView;
 import com.vn.fa.base.R;
 
 

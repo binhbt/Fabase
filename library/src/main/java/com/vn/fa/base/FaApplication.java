@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
-import com.fa.loader.FALoader;
 import com.vn.fa.net.ApiService;
 
 /**
@@ -23,9 +22,9 @@ public abstract class FaApplication extends MultiDexApplication {
 
     }
 
-    protected void initImageLoader(){
-        FALoader.initialize(this);
-    }
+//    protected void initImageLoader(){
+//        FALoader.initialize(this);
+//    }
     public static FaApplication getInstance() {
         return instance;
     }
