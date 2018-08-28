@@ -85,7 +85,7 @@ dependencies {
     //compile libraries.vegarecyclerview
 //    compile project(':FaRequest')
     compile 'com.github.binhbt:FaRq:1.3.2'
-    implementation 'com.github.binhbt:FaRecyclerView:1.2.9'
+    compile 'com.github.binhbt:FaRecyclerView:1.2.9'
 //    compile project(':FaRecyclerView')
     compile 'com.github.binhbt:vegaimageloader:1.0.6'
 //    compile project(':Faimageloader')
