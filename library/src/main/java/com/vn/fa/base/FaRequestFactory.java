@@ -6,8 +6,8 @@ import com.vn.fa.base.data.net.FaRequest;
  * Created by leobui on 11/10/2017.
  */
 
-public abstract class VegaRequestFactory {
-    public VegaRequestFactory(){
+public abstract class FaRequestFactory {
+    public FaRequestFactory(){
         init();
     }
     public abstract void init();

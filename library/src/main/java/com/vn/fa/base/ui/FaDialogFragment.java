@@ -65,7 +65,7 @@ public abstract class FaDialogFragment extends RxDialogFragment {
     }
     @Override
     public void onDestroy() {
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
         super.onDestroy();
     }
 

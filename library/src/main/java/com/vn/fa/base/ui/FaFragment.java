@@ -94,7 +94,7 @@ public abstract class FaFragment extends RxFragment{
 
     @Override
     public void onDestroy() {
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
         super.onDestroy();
     }
 

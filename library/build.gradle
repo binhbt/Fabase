@@ -26,7 +26,6 @@ android {
 repositories {
     mavenCentral()
 }
-
 // build a jar with source files
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -74,8 +73,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile libraries.multidex
-    compile libraries.butterknife
-    annotationProcessor libraries.butterknife
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+//    compile libraries.butterknife
+//    annotationProcessor libraries.butterknife
     compile libraries.eventbus
     //compile libraries.picasso
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
