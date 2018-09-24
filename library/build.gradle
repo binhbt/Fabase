@@ -30,6 +30,7 @@ repositories {
     mavenCentral()
     jcenter()
 }
+/*
 // build a jar with source files
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -53,6 +54,7 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
+*/
 
 // uncomment to build a jar file in addition to the default aar file
 //android.libraryVariants.all { variant ->
