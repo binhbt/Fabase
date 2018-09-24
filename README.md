@@ -5,6 +5,16 @@
 You can also customize what the loading view at the bottom of the list looks like.
 
 Note: This library should be able to work with any layout manager linear, grid, stagged layout manager. You can config layout manager in xml or in java code, support no data layout
+
+This library is contain 2 lib:
+
+Fucking Awesome RecyclerView
+https://github.com/binhbt/FaRecyclerview
+
+And
+
+Fucking Awesome Http Request
+https://github.com/binhbt/FaRequest
 ```sh
 //All project
 allprojects {
