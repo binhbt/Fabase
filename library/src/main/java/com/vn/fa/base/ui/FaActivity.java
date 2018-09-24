@@ -37,7 +37,7 @@ public abstract class FaActivity extends RxActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vega);
+        setContentView(R.layout.activity_fa);
         if (getLayoutId() >0) {
             View contentView = getLayoutInflater().inflate(getLayoutId(), null);
             ((ViewGroup) findViewById(R.id.vega_content)).addView(contentView);

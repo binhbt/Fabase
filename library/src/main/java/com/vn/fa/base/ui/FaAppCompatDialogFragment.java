@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
 import com.vn.fa.base.R;
 import com.vn.fa.ui.RxAppCompatDialogFragment;
 
@@ -26,7 +25,7 @@ public abstract class FaAppCompatDialogFragment extends RxAppCompatDialogFragmen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (root == null) {
-            root = inflater.inflate(R.layout.fragment_vega, container,
+            root = inflater.inflate(R.layout.fragment_fa, container,
                     false);
             if (getLayoutId() >0) {
                 View contentFragment = inflater.inflate(getLayoutId(), container,

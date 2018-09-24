@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
+//apply plugin: 'com.android.feature'
+apply plugin: 'com.jakewharton.butterknife'
 //apply plugin: 'com.github.dcendents.android-maven' // ADD THIS
-
 group='com.github.jitpack'
 
 android {
@@ -25,6 +26,7 @@ android {
 // Required because retrolambda is on maven central
 repositories {
     mavenCentral()
+    jcenter()
 }
 // build a jar with source files
 task sourcesJar(type: Jar) {
@@ -62,10 +64,15 @@ artifacts {
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
+        maven { url "http://oss.sonatype.org/content/groups/public" }
+
     }
 
     dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        //classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
     }
 }
 
@@ -73,8 +80,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile libraries.multidex
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // butter knife
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 //    compile libraries.butterknife
 //    annotationProcessor libraries.butterknife
     compile libraries.eventbus

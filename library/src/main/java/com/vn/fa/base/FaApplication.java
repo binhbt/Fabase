@@ -18,8 +18,6 @@ public abstract class FaApplication extends MultiDexApplication {
         super.onCreate();
         instance = this;
         //initImageLoader();
-
-
     }
 
 //    protected void initImageLoader(){
