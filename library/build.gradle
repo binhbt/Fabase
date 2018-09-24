@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 //apply plugin: 'com.android.feature'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'com.github.dcendents.android-maven'
+
 //apply plugin: 'com.github.dcendents.android-maven' // ADD THIS
 group='com.github.jitpack'
 
