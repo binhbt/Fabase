@@ -26,7 +26,7 @@ allprojects {
     }
 }
 //App project
-    compile 'com.github.binhbt:Fabase:1.5.4'
+    implementation 'com.github.binhbt:Fabase:1.5.4'
 ```
 - Demo at:
 https://github.com/binhbt/FADemo
