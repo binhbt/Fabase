@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "474317561078",
+    "firebase_url": "https://vegabasedemo.firebaseio.com",
+    "project_id": "vegabasedemo",
+    "storage_bucket": "vegabasedemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474317561078:android:2721dd1b74baf62c",
+        "android_client_info": {
+          "package_name": "com.example.binhbt.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474317561078-e73he2s25rgicqhbdhh3flttheubv0db.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1TMISJgXnowSW9Yp9LnvWt_qNaL0Ceuw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.vn.fa.widget.FaRecyclerView xmlns:fa="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fa:fa_progress_in_center="true"
+        fa:fa_recyclerClipToPadding="false"
+        fa:fa_scrollbarStyle="insideInset"
+        fa:fa_spanCount="2"
+        fa:fa_type="grid" />
+</LinearLayout>

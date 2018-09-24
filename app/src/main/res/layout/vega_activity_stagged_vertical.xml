@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.vn.fa.widget.FaRecyclerView xmlns:fa="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fa:fa_layout_empty="@layout/emptyview"
+        fa:fa_layout_moreProgress="@layout/view_more_progress"
+        fa:fa_recyclerClipToPadding="false"
+        fa:fa_recyclerPadding="16dp"
+        fa:fa_scrollbarStyle="outsideOverlay"
+        fa:fa_progress_in_center="true"
+        fa:fa_layout_progress="@layout/layout_center_progress"
+        fa:fa_type="stagged"
+        fa:fa_spanCount="2"/>
+
+</RelativeLayout>

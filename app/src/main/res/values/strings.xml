@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Fabase demo</string>
+		    <string name="title_activity_home">HomeActivity</string>
+    <string name="url">http://www.clip.vn/</string>
+
+    <string name="activity_title_user_list">Users List</string>
+    <string name="activity_title_user_details">User Details</string>
+
+    <string name="btn_text_load_data">Load Sample Data</string>
+    <string name="btn_text_retry">Retry</string>
+
+    <string name="view_text_email">Email:</string>
+    <string name="view_text_followers">Followers:</string>
+    <string name="view_text_description">Description:</string>
+
+    <string name="string_content_description">Non accessible view</string>
+
+    //Exception messages
+    <string name="exception_message_generic">There was an application error</string>
+    <string name="exception_message_no_connection">There is no internet connection</string>
+    <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_search">Search</string>
+
+    <string name="nav_stateless">Stateless Section</string>
+    <string name="nav_example1">Section with Header</string>
+    <string name="nav_example2">Section with Header and Footer</string>
+    <string name="nav_example4">Expandable Section</string>
+    <string name="nav_example5">Grid Section with Header</string>
+    <string name="nav_example6">Expandable Grid Section</string>
+    <string name="nav_example7">SearchView with Sections</string>
+    <string name="nav_stateful">Stateful Section</string>
+    <string name="nav_example3">Section with Header and Footer</string>
+
+    <string name="world_topic">World</string>
+    <string name="biz_topic">Business</string>
+    <string name="tech_topic">Technology</string>
+    <string name="sports_topic">Sports</string>
+
+    <string name="top_rated_movies_topic">Top Rated Movies</string>
+    <string name="most_popular_movies_topic">Most Popular Movies</string>
+
+    <string name="more">MORE</string>
+    <string name="see_more">See more..</string>
+    <string name="failed_load">Failed to load, tap to try again.</string>
+</resources>

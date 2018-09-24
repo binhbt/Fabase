@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/button_stagged_grid_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/button_grid_horizontal"
+        android:text="Stagged Grid horizontal example"/>
+    <Button
+        android:id="@+id/button_grid_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/button_list_sample"
+        android:text="Grid horizontal example"/>
+    <Button
+        android:id="@+id/button_list_sample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/button_list_sample_horizontal"
+        android:text="List example"/>
+    <Button
+        android:id="@+id/button_list_sample_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/button_grid_sample"
+        android:text="List example horizontal"/>
+    <Button
+        android:id="@+id/button_grid_sample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/button_staggered_sample"
+        android:text="Grid example"/>
+
+    <Button
+        android:id="@+id/button_staggered_sample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Staggered grid example"/>
+
+
+</RelativeLayout>
