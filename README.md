@@ -9,11 +9,13 @@ Note: This library should be able to work with any layout manager linear, grid, 
 This library is contain 2 lib:
 
 Fucking Awesome RecyclerView
+
 https://github.com/binhbt/FaRecyclerview
 
 And
 
 Fucking Awesome Http Request
+
 https://github.com/binhbt/FaRequest
 ```sh
 //All project
